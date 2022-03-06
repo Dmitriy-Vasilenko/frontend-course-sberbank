@@ -45,15 +45,17 @@ class Person {
     getName() {
         return this.firstName + ' ' + this.lastName;
     }
-
-    get name() {
-        return `${this.firstName} ${this.lastName}`;
-    }
-
-    set name(value) {
-        [this.firstName, this.lastName] = value.split(' ');
-    }
 }
+
+Object.defineProperty(Person.prototype, 'name', {
+    get() {
+      return `${this.firstName} ${this.lastName}`;
+    },
+  
+    set(value) {
+      [this.firstName, this.lastName] = value.split(" ");
+    }
+});
   
 let marcusFenix = new Person('Marcus', 'Fenix');
 console.log(marcusFenix.firstName); // => 'Marcus'
